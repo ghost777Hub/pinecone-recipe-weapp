@@ -1,0 +1,36 @@
+@import '../../assets/styles/var.scss';
+
+
+
+.excellent-recommends-component {
+  .recommends-card-wrapper{
+    width: 92%;
+    margin: 0 auto;
+  }
+  .excellent-recommends-title{
+    display: inline-block;
+    margin-top: 26px;
+    margin-bottom: 22px;
+    font-size: 36px;
+    color: $deepen_text_title;
+    &.ertitle1{
+      color: $default_button_green;
+    }
+    &.ertitle2{
+      color: $deepen2_main_bg;
+    }
+    &.ertitle3{
+      color: $deepen_border_bule;
+    }
+  }
+  .fenge-area{
+    width: 100%;
+    height: 12px;
+    position: relative;
+    .fenge-tupo{
+      position: absolute;
+      left: 0;right: 0;top: 0;bottom: 0;
+      background: $default_border_bg;
+    }
+  }
+}

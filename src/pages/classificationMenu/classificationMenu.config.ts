@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: 'classificationMenu'
+  navigationBarTitleText: '食谱大全'
 }

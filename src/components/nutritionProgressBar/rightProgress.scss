@@ -1,0 +1,22 @@
+.right-progress-component{
+  height: 100%;
+  // background: chocolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  .danbaizhi-wrapper {
+    margin-top: 20px;
+  }
+  .huan-text{
+    font-weight: bolder;
+    font-size: 18px;
+    margin-left: 15px;
+    &.text1{
+      color: #F2576E;
+    }
+    &.text2{
+      color: #5397DF;
+    }
+  }
+}

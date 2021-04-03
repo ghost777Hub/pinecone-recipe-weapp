@@ -1,0 +1,18 @@
+@import '../../assets/styles/var.scss';
+
+
+
+.left-progress-component{
+  // background: chocolate;
+  margin-bottom: 12px;
+  .leftprogress-text{
+    color: $default_progress_bg;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /*覆盖taro-ui默认样式*/
+  .at-progress__outer-inner {
+    background-color: rgba(138, 236, 194, 0.2)
+  }
+}

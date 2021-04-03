@@ -1,0 +1,26 @@
+@import '../../assets/styles/var.scss';
+
+
+
+.hot-tags-area-component {
+  width: 80%;
+  // background: red;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  .hot-tags-area-title{
+    margin-top: -20px;
+    font-size: 16px;
+  }
+  .hot-tags-attag-wrapper{
+    margin-right: 14px;
+    margin-bottom: 20px;
+  }
+
+
+  /*覆盖taro-ui样式*/
+  .at-tag--active {
+    color: $default_text_content;
+    border-color: $default_text_cr;
+  }
+}

@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: 'randomFood'
+  navigationBarTitleText: '随机食谱'
 }

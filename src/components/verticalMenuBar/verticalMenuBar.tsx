@@ -34,7 +34,7 @@ export const VerticalMenuBar: React.FC<VerticalMenuBarProps> = () => {
                 {item.subcategory.map((subItem, subI)=>{
                   return(
                     <View className="attabspane-boxarea" key={subI}>
-                      <View className="attabspane-imagebox"><Image className="attabspane-image" src={subItem.imgSrc} mode="bottom"></Image></View>
+                      <View className="attabspane-imagebox"><Image className="attabspane-image" src={subItem.imgSrc} mode="aspectFill"></Image></View>
                       <Text className="attabspane-caitext">{subItem.title}</Text>
                     </View>
                 )})}

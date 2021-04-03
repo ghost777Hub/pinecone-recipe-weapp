@@ -1,6 +1,6 @@
 Component({
   properties: {
-    // choujiang | wode | wode1 | shouye | fenlei | shoucang | chakandianzan | shijian | iconsearch | delete
+    // tihuantupian | fenxiang | youjiantou | jingxi | beijingyinle- | xiazai | choujiang | wode | wode1 | shouye | fenlei | shoucang | chakandianzan | shijian | iconsearch | delete
     name: {
       type: String,
     },

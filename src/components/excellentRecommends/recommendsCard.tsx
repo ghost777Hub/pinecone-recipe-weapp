@@ -1,7 +1,7 @@
 import React from 'react'
 import './recommendsCard.scss'
 import {View, Text, Image} from '@tarojs/components'
-import IconFont from '../iconfont'
+import {CardBottomDesc} from '../index'
 
 
 
@@ -21,8 +21,6 @@ interface RecommendsCardProps {
 //组件
 export const RecommendsCard: React.FC<RecommendsCardProps> = (props) => {
   const {cardItemData} = props
-  const iconSize:number = 35 //icon大小
-  const iconColor:string = '#B3B3B3' //icon颜色
 
 
   return(
@@ -37,20 +35,7 @@ export const RecommendsCard: React.FC<RecommendsCardProps> = (props) => {
         <Text className="recard-area2-text">{cardItemData.xuanchuanContent}</Text>
         <Text className="recard-area2-text area2-textcontent">{cardItemData.content}</Text>
       </View>
-      <View className="recommends-card-area3">
-        <View className="recard-area3-textwrapper  wrapper11">
-          <IconFont name="shijian" color={iconColor} size={iconSize} />
-          <Text className="recard-area3-text">{cardItemData.productionTime}</Text>
-        </View>
-        <View className="recard-area3-textwrapper wrapper22">
-          <IconFont name="chakandianzan" color={iconColor} size={iconSize} />
-          <Text className="recard-area3-text">{cardItemData.LikesNumber}人</Text>
-        </View>
-        <View className="recard-area3-textwrapper wrapper33">
-          <IconFont name="shoucang" color={iconColor} size={iconSize} />
-          <Text className="recard-area3-text">{cardItemData.collectorsNumber}人</Text>
-        </View>
-      </View>
+      <CardBottomDesc />
     </View>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import './home.scss'
-import {View, Image} from '@tarojs/components'
+import {View} from '@tarojs/components'
 import { SearchBar, CarouselMap, PublicityArea, ExcellentRecommends } from '../../components'
 
 
@@ -17,7 +17,6 @@ const Home: React.FC<HomeProps> = ()=>{
 
   return (
     <View className="home-page">
-      <Image style={{width:'100%', height: '67px', background: '#fff'}} src={require('../../assets/images/jiatoubu.png')}></Image>
       {/* 轮播图 */}
       <CarouselMap />
       {/* 搜索栏 */}

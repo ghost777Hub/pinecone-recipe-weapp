@@ -9,6 +9,8 @@ export default {
     'pages/classificationMenu/classificationMenu',
     'pages/randomFood/randomFood',
     'pages/individualUser/individualUser',
+    'pages/recipeList/recipeList',
+    'pages/recipeDetail/recipeDetail',
   ],
   tabBar:{
     list:[

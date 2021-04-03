@@ -1,0 +1,37 @@
+@import '../../assets//styles/var.scss';
+
+
+
+.random-search-bar-component {
+  margin-top: 70px;
+  margin-bottom: 38px;
+  .randomsearchbar-box{
+    width: 600px;
+    height: 72px;
+    border: 1px solid $deepen_main_bg;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 15px;
+    transition: box-shadow .6s ease-in-out;
+    &.effect{
+      box-shadow: 0  0 14px 2px $default_main_bg;
+    }
+    .randomsearchbar-input{
+      width: 81%;
+      font-size: 18px;
+    }
+
+    .randomsearchbar-icon-wrapper{
+      flex: 1;
+      height: 100%;
+      background: $deepen_main_bg;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

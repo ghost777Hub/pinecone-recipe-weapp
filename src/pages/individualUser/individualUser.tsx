@@ -1,6 +1,7 @@
 import React from 'react'
 import './individualUser.scss'
-import {View, Text} from '@tarojs/components'
+import {View} from '@tarojs/components'
+import { MyInfoCard, SettingsList } from '../../components'
 
 
 
@@ -11,7 +12,10 @@ interface IndividualUserProps {}
 const IndividualUser: React.FC<IndividualUserProps> = () => {
   return(
     <View className="individual-user-page">
-      <Text>individualUser页2278标题</Text>
+      {/* 我的信息卡片 */}
+      <MyInfoCard />
+      {/* 设置选项 */}
+      <SettingsList />
     </View>
   )
 }

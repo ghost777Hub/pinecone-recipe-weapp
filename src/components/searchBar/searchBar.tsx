@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import './searchBar.scss'
 import {View, Text, Input} from '@tarojs/components'
 import IconFont from '../iconfont'
+import Taro, { useDidShow } from '@tarojs/taro'
 
 
 
@@ -16,15 +17,16 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
   const deepen_border_bg = '#B3B3B3'  //深色
   const leftAndRightIconColor = '#ACACAC' //左右icon颜色
   const [searchBarBoxBrderColor, setSearchBarBoxBrderColor] = useState<string>('') //边框颜色
-  const [searchValue, setSearchValue] = useState<string>('')
+  const [searchValue, setSearchValue] = useState<string>('') //搜索框中的值
+  useDidShow(()=>{
+    handleDelete()
+  })
 
 
   //输入处理
   const handleOnInput = (e)=>{
     const currentValue = e.detail.value
     setSearchValue(currentValue)
-    props.onAcceptChange && props.onAcceptChange(currentValue)
-    // console.log(currentValue)
   }
   //聚焦处理
   const handleOnFocus = ()=>{
@@ -38,6 +40,15 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
   const handleDelete = ()=>{
     setSearchValue('')
   }
+  //点击输入完成 提交
+  const handleConfirm = ()=>{
+    const submitValue = searchValue.replace(/\s+/g, "")
+    if(!submitValue) return Taro.showToast({
+      title: '搜索不能为空',
+      icon: 'none'
+    })
+    props.onAcceptChange && props.onAcceptChange(submitValue)
+  }
 
 
   return(
@@ -50,16 +61,17 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
             placeholderClass="search-bar-inputph"
             type='text'
             placeholder='搜索菜名'
-            maxlength={20}
+            maxlength={30}
             value={searchValue}
             onInput={handleOnInput}
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
+            onConfirm={handleConfirm}
           />
         </View>
         <View className="delete-img-you" onClick={handleDelete}><IconFont name="delete" color={leftAndRightIconColor} size={22} /></View>
       </View>
-      <Text className="search-bar-cancel">取消</Text>
+      <Text className="search-bar-cancel" onClick={handleConfirm}>搜索</Text>
     </View>
   )
 }

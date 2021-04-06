@@ -1,3 +1,7 @@
+var path = require('path')
+
+
+
 const config = {
   projectName: 'pinecone-recipe-weapp',
   date: '2021-3-29',
@@ -60,6 +64,9 @@ const config = {
         }
       }
     }
+  },
+  //设置路径别名
+  alias: {
   }
 }
 

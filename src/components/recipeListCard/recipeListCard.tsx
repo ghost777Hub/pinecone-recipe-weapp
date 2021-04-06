@@ -1,7 +1,7 @@
 import React from 'react'
 import './recipeListCard.scss'
 import {View, Text, Image} from '@tarojs/components'
-import sucaiImgSrc from '../../assets/images/0179665f63369011013f311090e0f4.jpg'
+import sucaiImgSrc from '../../assets/images/home/017b2c5d831881a8012060be0d83e7.png'
 import { AtRate } from 'taro-ui'
 import Iconfont from '../iconfont'
 

@@ -20,7 +20,7 @@ export const tabListRight = [
     bigClassCode: 'remen',
     subcategory:[
       {
-        subClassCode: 'jiacahngcai',
+        subClassCode: 'jiachangcai',
         title: '家常菜',
         imgSrc: require('../../assets/images/menuClass/260673662.png')
       },

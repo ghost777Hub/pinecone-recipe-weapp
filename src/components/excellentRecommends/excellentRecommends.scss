@@ -4,14 +4,14 @@
 
 .excellent-recommends-component {
   .recommends-card-wrapper{
-    width: 92%;
+    width: 95%;
     margin: 0 auto;
   }
   .excellent-recommends-title{
     display: inline-block;
     margin-top: 26px;
-    margin-bottom: 22px;
-    font-size: 36px;
+    margin-bottom: 12px;
+    font-size: 40px;
     color: $deepen_text_title;
     &.ertitle1{
       color: $default_button_green;
@@ -25,7 +25,7 @@
   }
   .fenge-area{
     width: 100%;
-    height: 12px;
+    height: 20px;
     position: relative;
     .fenge-tupo{
       position: absolute;

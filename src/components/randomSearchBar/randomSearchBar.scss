@@ -3,10 +3,11 @@
 
 
 .random-search-bar-component {
-  margin-top: 70px;
-  margin-bottom: 38px;
+  width: 90%;
+  margin-top: 140px;
+  margin-bottom: 30px;
   .randomsearchbar-box{
-    width: 600px;
+    // width: 600px;
     height: 72px;
     border: 1px solid $deepen_main_bg;
     border-radius: 12px;
@@ -20,7 +21,7 @@
     }
     .randomsearchbar-input{
       width: 81%;
-      font-size: 18px;
+      font-size: 22px;
     }
 
     .randomsearchbar-icon-wrapper{

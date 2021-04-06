@@ -6,32 +6,37 @@ import { AtTag } from 'taro-ui'
 
 
 //定义
-interface HotTagsAreaProps {}
+interface HotTagsAreaProps {
+  /**热门搜索关键词 */
+  dataPack: any;
+  onWordToDetail:(id:string)=>void
+}
 
 //组件
-export const HotTagsArea: React.FC<HotTagsAreaProps> = () => {
-  const a = [1,232131,3,4,4345,62121212121212121,7]
+export const HotTagsArea: React.FC<HotTagsAreaProps> = (props) => {
+  const {dataPack} = props
   //点击标签
   const clickTag = (e)=>{
-    console.log(e);
+    console.log(e.name);
+    props.onWordToDetail && props.onWordToDetail(e.name)
   }
 
 
   return(
     <View className="hot-tags-area-component">
       <Text className="hot-tags-area-title">热门搜索：</Text>
-      {a.map((item,i)=>{
+      {dataPack.length > 0 ? dataPack.map((item,i)=>{
         return (
           <View className="hot-tags-attag-wrapper" key={i}>
             <AtTag 
-              name='tag-1' 
+              name={item.id} 
               circle 
               active
               onClick={clickTag}>
-              {item}
+              {item.title}
             </AtTag>
           </View>
-      )})}
+      )}):null}
     </View>
   )
 }

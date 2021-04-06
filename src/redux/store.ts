@@ -1,4 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { userSlice } from './user/slice'
+import { recipesSlice } from './recipes/slice'
 
 
 
@@ -7,7 +9,8 @@ export type RootState = ReturnType<typeof store.getState>
 
 //创建reducer
 const rootReducer = combineReducers({
-
+  user: userSlice.reducer,
+  recipe: recipesSlice.reducer
 })
 
 //创建store

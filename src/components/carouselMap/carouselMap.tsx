@@ -1,43 +1,46 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './carouselMap.scss'
 import {View, Swiper, SwiperItem, Image } from '@tarojs/components'
-import lunbotu1 from '../../assets/images/01a6a55f63369011013f31101def1d.jpg'
-import lunbotu2 from '../../assets/images/01e7525f63368611013e458456823c.jpg'
-import lunbotu3 from '../../assets/images/01f2715f63369211013f31107ad80a.jpg'
-import lunbotu4 from '../../assets/images/0179665f63369011013f311090e0f4.jpg'
 
 
 
 //定义
-interface CarouselMapProps {}
+interface CarouselMapProps {
+  list: any[],
+  onBannerClick(id:string):void
+}
 
 //组件
-export const CarouselMap: React.FC<CarouselMapProps> = () => {
-  const swiperItemDom = [
-    {imageSrc: lunbotu1},
-    {imageSrc: lunbotu2},
-    {imageSrc: lunbotu3},
-    {imageSrc: lunbotu4},
-  ]
+export const CarouselMap: React.FC<CarouselMapProps> = (props) => {
+  const { list } = props
+  const handleClick = (e)=>{
+    const {id} = e.currentTarget.dataset
+    props.onBannerClick && props.onBannerClick(id)
+  }
+  useEffect(()=>{
+  },[])
+
   return(
     <View className="carousel-map-component">
-      <Swiper
+      {list.length > 0 ? 
+        <Swiper
         className='carousel-swiper-container'
         indicatorColor='#FFFFFF'
         indicatorActiveColor='#CCCCCC'
         vertical={false} circular indicatorDots 
         autoplay
         interval={2200} duration={900}>
-        {swiperItemDom.map((item,i) => {
+        {list.map((item,i) => {
           return (
             <SwiperItem key={i}>
-              <View className={'carousel-swiper-itembox'}>
-                <Image className={'carousel-swiper-itemimg'} src={item.imageSrc} mode="aspectFill"></Image>
+              <View data-id={item.id} className={'carousel-swiper-itembox'} onClick={handleClick}>
+                <Image className={'carousel-swiper-itemimg'} src={ require(`../../assets/images${item.imageSrc}`) } mode="aspectFill"></Image>
               </View>
             </SwiperItem>
           )
         })}
-      </Swiper>
+        </Swiper>
+      : null}
     </View>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import './recipeDetail.scss'
 import { View, Image, Text } from '@tarojs/components'
 import { NutritionProgressBar, IngredientList } from '../../components'
@@ -8,7 +8,8 @@ import meiweiImgSrc from '../../assets/images/foodDetail/meiwei.png'
 import miaobiaoImgSrc from '../../assets/images/foodDetail/miaobiao.png'
 import nandudengjiImgSrc from '../../assets/images/foodDetail/nandudengji.png'
 import shiwureliangImgSrc from '../../assets/images/foodDetail/shiwureliang.png'
-import headerBgImgSrc from '../../assets/images/01e7525f63368611013e458456823c.jpg'
+import headerBgImgSrc from '../../assets/images/home/017b2c5d831881a8012060be0d83e7.png'
+import {getCurrentInstance} from '@tarojs/taro'
 
 
 
@@ -17,6 +18,11 @@ interface RecipeDetailProps { }
 
 //组件
 const RecipeDetail: React.FC<RecipeDetailProps> = () => {
+  const router = getCurrentInstance().router as any //路由对象
+  useEffect(()=>{
+    const { id } = router.params
+    console.log(id);
+  },[])
   const giveCompositionData = [  //营养数据
     {
       title: '卡路里',

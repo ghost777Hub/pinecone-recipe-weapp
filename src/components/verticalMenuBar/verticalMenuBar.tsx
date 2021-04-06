@@ -7,15 +7,24 @@ import { tabListLeft, tabListRight } from './options'
 
 
 //定义
-interface VerticalMenuBarProps {}
+interface VerticalMenuBarProps {
+  /**去食谱列表页 */
+  onToListPageFn:(code: string)=>void
+}
 
 //组件
-export const VerticalMenuBar: React.FC<VerticalMenuBarProps> = () => {
-  const [current, setCurrent] = useState<number>(0)  //选中下标
+export const VerticalMenuBar: React.FC<VerticalMenuBarProps> = (props) => {
+  const { onToListPageFn } = props
+  const [current, setCurrent] = useState<number>(0)  //tab选中下标
 
-  //点击处理
+  //切换右侧tab
   const handleClick = (index)=>{
     setCurrent(index)
+  }
+  //处理去食谱列表页
+  const gotoListPage = (e)=>{
+    const {subclasscode} = e.currentTarget.dataset
+    onToListPageFn && onToListPageFn(subclasscode)
   }
 
   return(
@@ -33,7 +42,7 @@ export const VerticalMenuBar: React.FC<VerticalMenuBarProps> = () => {
               <View className="attabspane-view">
                 {item.subcategory.map((subItem, subI)=>{
                   return(
-                    <View className="attabspane-boxarea" key={subI}>
+                    <View data-subclasscode={subItem.subClassCode} className="attabspane-boxarea" key={subI} onClick={gotoListPage}>
                       <View className="attabspane-imagebox"><Image className="attabspane-image" src={subItem.imgSrc} mode="aspectFill"></Image></View>
                       <Text className="attabspane-caitext">{subItem.title}</Text>
                     </View>

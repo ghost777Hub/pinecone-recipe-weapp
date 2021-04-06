@@ -3,14 +3,17 @@
 
 
 .hot-tags-area-component {
-  width: 80%;
+  width: 87%;
   // background: red;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  // justify-content: space-around;
+  box-sizing: border-box;
+  padding: 0 30px;
   .hot-tags-area-title{
     margin-top: -20px;
-    font-size: 16px;
+    font-size: 26px;
   }
   .hot-tags-attag-wrapper{
     margin-right: 14px;
@@ -22,5 +25,8 @@
   .at-tag--active {
     color: $default_text_content;
     border-color: $default_text_cr;
+  }
+  .at-tag {
+    font-size: 22px;
   }
 }

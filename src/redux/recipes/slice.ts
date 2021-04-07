@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getRequest } from '../../api/request'
+import { getRequest, postRequest } from '../../api/request'
 import { ALLURLPATH } from '../../api/url'
 
 
@@ -7,13 +7,23 @@ import { ALLURLPATH } from '../../api/url'
 //类型定义
 interface recipesState {
   /**轮播图数据 */
-  bannerListData: any[]
+  bannerListData: any[];
   /**推荐卡数据 */
-  recommendData: {},
+  recommendData: {};
   /**搜索关键词数据 */
-  keyWordData: any[],
+  keyWordData: any[];
   /**随机食谱数据 */
-  randomRecipesData: {}
+  randomRecipesData: {};
+  /**食谱列表数据 */
+  recipesListData: any[];
+  /**数据请求完成前loading */
+  loading: boolean;  //有DOM渲染，回到顶部问题。列表页不用了，用原生showloading
+  /**数据错误 */
+  error: string | null;
+  /**当前数据列表数据码 */
+  currentPage: number;
+  /**食谱详情数据 */
+  recipesDetailData: {};
 }
 
 //数据
@@ -21,7 +31,12 @@ const initialState: recipesState = {
   bannerListData: [],
   recommendData: {},
   keyWordData: [],
-  randomRecipesData: {}
+  randomRecipesData: {},
+  recipesListData: [],
+  loading: true,
+  error: null,
+  currentPage: 0,
+  recipesDetailData: {}
 }
 
 
@@ -56,6 +71,46 @@ export const getRandomRecipesAPI = createAsyncThunk(
   'recipes/getRandomRecipesAPI',
   async () => {
     const res = await getRequest(ALLURLPATH.RANDOMRECIPES)
+    return res
+  }
+)
+//获取食谱列表API
+export const postRecipesListAPI = createAsyncThunk(
+  'recipes/postRecipesListAPI',
+  async (parameters:{type:'search'|'class',  value:string, currentPage?:number}) => {
+    let res
+    if(parameters.type === 'search') {
+      res = await postRequest(ALLURLPATH.RECIPESLIST, parameters)
+    }
+    //class具有分页性质
+    if(parameters.type === 'class'){
+      res = await postRequest(ALLURLPATH.RECIPESLIST, {
+        type: parameters.type,
+        value: parameters.value,
+        currentPage: parameters.currentPage || 0
+      })
+    }
+    return res
+  }
+)
+//下拉刷新食谱列表API
+export const postRecipesListPullDownAPI = createAsyncThunk(
+  'recipes/postRecipesListPullDownAPI',
+  async (parameters:{type: 'class',  value:string, currentPage:number}) => {
+    const res = await postRequest(ALLURLPATH.RECIPESLIST, {
+      type: parameters.type,
+      value: parameters.value,
+      currentPage: parameters.currentPage || 0
+    })
+    return res
+  }
+)
+//获取食谱详情
+export const postRecipesDetailAPI = createAsyncThunk(
+  'recipes/postRecipesDetailAPI',
+  async (parameters:{rId:string}) => {
+    // console.log('parameters.id', parameters.rId);
+    const res = await postRequest(ALLURLPATH.RECIPESDETAIL, parameters)
     return res
   }
 )
@@ -117,6 +172,56 @@ export const recipesSlice = createSlice({
     },
     [getRandomRecipesAPI.rejected.type]: (state,  action)=>{
       console.log('getRandomRecipesAPI失败:', state, action)
+    },
+
+    //获取食谱列表API
+    [postRecipesListAPI.pending.type]: (state,  action)=>{
+      console.log('postRecipesListAPI等待:', state, action)
+    },
+    [postRecipesListAPI.fulfilled.type]: (state,  action)=>{
+      const _data = action.payload.data.data
+      state.currentPage = _data.currentPageCode
+      state.recipesListData = _data.pageData
+      state.error = null
+      console.log('postRecipesListAPI成功:', state, action)
+    },
+    [postRecipesListAPI.rejected.type]: (state,  action)=>{
+      state.error = action.payload
+      console.log('postRecipesListAPI失败:', state, action)
+    },
+
+    //下拉刷新食谱列表API
+    [postRecipesListPullDownAPI.pending.type]: (state,  action)=>{
+      console.log('postRecipesListPullDownAPI等待:', state, action)
+    },
+    [postRecipesListPullDownAPI.fulfilled.type]: (state,  action)=>{
+      const _data = action.payload.data.data
+      state.currentPage = _data.currentPageCode
+      state.recipesListData = state.recipesListData.concat(_data.pageData)
+      state.error = null
+      console.log('postRecipesListPullDownAPI成功:', state, action)
+    },
+    [postRecipesListPullDownAPI.rejected.type]: (state,  action)=>{
+      state.error = action.payload
+      console.log('postRecipesListPullDownAPI失败:', state, action)
+    },
+
+    //获取食谱详情
+    [postRecipesDetailAPI.pending.type]: (state,  action)=>{
+      state.loading = true
+      console.log('postRecipesDetailAPI等待:', state, action)
+    },
+    [postRecipesDetailAPI.fulfilled.type]: (state,  action)=>{
+      const _data = action.payload.data.data
+      state.recipesDetailData = _data
+      state.loading = false
+      state.error = null
+      console.log('postRecipesDetailAPI成功:', state, action)
+    },
+    [postRecipesDetailAPI.rejected.type]: (state,  action)=>{
+      state.loading = false
+      state.error = action.payload
+      console.log('postRecipesDetailAPI失败:', state, action)
     },
   }
 })

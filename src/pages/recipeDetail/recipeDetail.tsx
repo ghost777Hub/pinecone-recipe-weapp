@@ -1,15 +1,18 @@
-import React,{useEffect} from 'react'
+import React, { useEffect } from 'react'
 import './recipeDetail.scss'
 import { View, Image, Text } from '@tarojs/components'
 import { NutritionProgressBar, IngredientList } from '../../components'
 import { AtDivider } from 'taro-ui'
-import bingqilinImgSrc from '../../assets/images/foodDetail/bingqilin.png'
-import meiweiImgSrc from '../../assets/images/foodDetail/meiwei.png'
-import miaobiaoImgSrc from '../../assets/images/foodDetail/miaobiao.png'
-import nandudengjiImgSrc from '../../assets/images/foodDetail/nandudengji.png'
-import shiwureliangImgSrc from '../../assets/images/foodDetail/shiwureliang.png'
-import headerBgImgSrc from '../../assets/images/home/017b2c5d831881a8012060be0d83e7.png'
-import {getCurrentInstance} from '@tarojs/taro'
+import bingqilinimageSrc from '../../assets/images/foodDetail/bingqilin.png'
+import meiweiimageSrc from '../../assets/images/foodDetail/meiwei.png'
+import miaobiaoimageSrc from '../../assets/images/foodDetail/miaobiao.png'
+import nandudengjiimageSrc from '../../assets/images/foodDetail/nandudengji.png'
+import shiwureliangimageSrc from '../../assets/images/foodDetail/shiwureliang.png'
+import { getCurrentInstance } from '@tarojs/taro'
+import { useDispatch } from 'react-redux'
+import { postRecipesDetailAPI } from '../../redux/recipes/slice'
+import { useSelector } from '../../redux/hooks'
+import { AtActivityIndicator } from 'taro-ui'
 
 
 
@@ -19,178 +22,102 @@ interface RecipeDetailProps { }
 //组件
 const RecipeDetail: React.FC<RecipeDetailProps> = () => {
   const router = getCurrentInstance().router as any //路由对象
-  useEffect(()=>{
-    const { id } = router.params
-    console.log(id);
-  },[])
-  const giveCompositionData = [  //营养数据
+  const { id } = router.params
+  const { composition, content, shuming, stepData } = useSelector(s => s.recipe.recipesDetailData) as any
+  const recipesDetailData = useSelector(s => s.recipe.recipesDetailData) as any
+  const error = useSelector(s=>s.recipe.error)
+  const loading = useSelector(s=>s.recipe.loading)
+
+  const shumingImgSrc = [  //说明数据图
     {
-      title: '卡路里',
-      percentage: 100
+      imageSrc: meiweiimageSrc
     },
     {
-      title: '碳水化合物',
-      percentage: 8
+      imageSrc: bingqilinimageSrc
     },
     {
-      title: '脂肪',
-      percentage: 100
+      imageSrc: miaobiaoimageSrc
     },
     {
-      title: '蛋白质',
-      percentage: 10.7
+      imageSrc: shiwureliangimageSrc
     },
     {
-      title: '钙',
-      percentage: 33
-    },
-    {
-      title: '铁',
-      percentage: 80
-    },
-  ]
-  const giveIngredientsData = [ //食材数据
-    {
-      title: '西兰花',
-      describe: '60克',
-    },
-    {
-      title: '虾仁(大)',
-      describe: '60克',
-    },
-    {
-      title: '南豆腐',
-      describe: '60克',
-    },
-    {
-      title: '水',
-      describe: '60克',
-    },
-    {
-      title: '盐',
-      describe: '60克',
-    },
-    {
-      title: '生抽',
-      describe: '60克',
-    },
-    {
-      title: '西蓝花',
-      describe: '60克',
-    },
-    {
-      title: '小葱',
-      describe: '60克',
-    },
-    {
-      title: '鸡蛋',
-      describe: '60克',
-    },
-    {
-      title: '香油',
-      describe: '60克',
-    },
-  ]
-  const shuming = [  //说明数据
-    {
-      title: '蒸',
-      imgSrc: meiweiImgSrc
-    },
-    {
-      title: '奶香味',
-      imgSrc: bingqilinImgSrc
-    },
-    {
-      title: '<30分钟',
-      imgSrc: miaobiaoImgSrc
-    },
-    {
-      title: '较高热量',
-      imgSrc: shiwureliangImgSrc
-    },
-    {
-      title: '初级入门',
-      imgSrc: nandudengjiImgSrc
+      imageSrc: nandudengjiimageSrc
     }
   ]
-  const stepData = [ //制作步骤
-    {
-      stepTitle: '步骤一',
-      stepContent: '锅中刷油，放入模具，加入鸡蛋，煎至半熟，加d32u98u94盐'
-    },
-    {
-      stepTitle: '步骤一',
-      stepContent: '锅中刷油，323fvr放入模具，加入鸡蛋，煎至半熟，加盐'
-    },
-    {
-      stepTitle: '步骤一',
-      stepContent: '锅中刷油，放入模具，加入鸡蛋，煎至半熟，加盐'
-    },
-    {
-      stepTitle: '步骤一',
-      stepContent: '锅中刷油，放入模具，加入鸡蛋，煎至半熟，加盐23rfg54bbfb hgn tgny565'
-    },
-    {
-      stepTitle: '步骤一',
-      stepContent: '锅中刷油，放入模具，加入鸡蛋，煎至半熟，加盐'
-    },
-    {
-      stepTitle: '步骤一',
-      stepContent: '锅中刷油，放入模具，加入鸡蛋，煎至半熟，加盐'
-    },
-  ]
+  const dispatch = useDispatch()
+  useEffect(() => {
+    getDataPack()
+  }, [])
 
+
+  //获取食谱详情
+  const getDataPack = async () => {
+    await dispatch(postRecipesDetailAPI({
+      rId: id
+    }))
+  }
+
+  if(loading){
+    return <AtActivityIndicator mode='center' content='Loading...' size={50} ></AtActivityIndicator>
+  }
+
+  if (error) {
+    return <div>网站出错: {error}</div>
+  }
 
   return (
     <View className="recipe-detail-page">
-      {/* 头部背景标题 */}
-      <View className="recipe-detail-header">
-        <Image className="recipe-detail--header-img" src={headerBgImgSrc} mode="aspectFill"></Image>
-        <View style={{ padding: '0 30px' }}>
-          <Text className="recipe-detail--header-title">双皮奶</Text>
-          <View className="at-row at-row__align--center">
-            <Text className="caiming-renshu-text">3528 收藏</Text>
-            <Text className="caiming-renshu-text">21814 浏览</Text>
+      {recipesDetailData ? <>
+        {/* 头部背景标题 */}
+        <View className="recipe-detail-header">
+          <Image className="recipe-detail--header-img" src={require(`../../assets/images${recipesDetailData.imageSrc}`)} mode="aspectFill"></Image>
+          <View style={{ padding: '0 20px' }}>
+            <Text className="recipe-detail--header-title">{recipesDetailData.title}</Text>
+            <View className="at-row at-row__align--center">
+              <Text className="caiming-renshu-text">{recipesDetailData.LikesNumber} 喜欢</Text>
+              <Text className="caiming-renshu-text">{recipesDetailData.collectorsNumber} 收藏</Text>
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={{ padding: '0 30px' }}>
-        {/* 营养成分进度条 */}
-        <NutritionProgressBar compositionData={giveCompositionData} />
-        {/* 其他描述性信息 */}
-        <View style={{ marginLeft: '-8px', marginTop: '3px' }} className="at-row at-row__justify--around at-row__align--center">
-          {shuming.map((item, i) => {
-            return (
-              <View className="at-col at-col-2 at-col--auto" key={i}>
-                <View className="at-row at-row__justify--center">
-                  <Image className="describe-row-img" src={item.imgSrc}></Image>
+        <View style={{ padding: '12px 20px 0' }}>
+          {/* 营养成分进度条 */}
+          <NutritionProgressBar compositionData={composition} />
+          {/* 其他描述性信息 */}
+          <View style={{ marginLeft: '-8px', marginTop: '15px' }} className="at-row at-row__justify--around at-row__align--center">
+            {shuming.map((item, i) => {
+              return (
+                <View className="at-col at-col-2 at-col--auto" key={i}>
+                  <View className="at-row at-row__justify--center">
+                    <Image className="describe-row-img" src={shumingImgSrc[i].imageSrc}></Image>
+                  </View>
+                  <View className="at-row at-row__justify--center">
+                    <Text className="describe-row-text">{item}</Text>
+                  </View>
                 </View>
-                <View className="at-row at-row__justify--center">
-                  <Text className="describe-row-text">{item.title}</Text>
-                </View>
-              </View>
-            )
-          })}
+              )
+            })}
+          </View>
         </View>
-      </View>
 
-      <AtDivider customStyle={{ marginBottom: '16px' }} lineColor="#e7e7e7" content='' />
+        <AtDivider customStyle={{marginTop: '8px', marginBottom: '16px' }} lineColor="#e7e7e7" content='' />
 
-      {/* 食材列表 */}
-      <View style={{ padding: '0 30px' }}>
-        <IngredientList ingredientsData={giveIngredientsData} />
-        <AtDivider lineColor="transparent" content='' />
-        {/* 制作步骤 */}
-        <View className="production-steps-area">
-          {stepData ? stepData.map((item, i) => {
-            return (<View className="production-steps-item" key={i}>
-              <View className='at-article__h2'>{item.stepTitle}</View>
-              <View className='at-article__p'>{item.stepContent}</View>
-            </View>)
-          }) : null}
+        {/* 食材列表 */}
+        <View style={{ padding: '0 20px' }}>
+          <IngredientList ingredientsData={content} />
+          <AtDivider lineColor="transparent" content='' />
+          {/* 制作步骤 */}
+          <View className="production-steps-area">
+            {stepData ? stepData.map((item, i) => {
+              return (<View className="production-steps-item" key={i}>
+                <View className='at-article__h2'>{item.stepTitle}</View>
+                <View className='at-article__p'>{item.stepContent}</View>
+              </View>)
+            }) : null}
+          </View>
         </View>
-      </View>
+      </> : null}
     </View>
   )
 }

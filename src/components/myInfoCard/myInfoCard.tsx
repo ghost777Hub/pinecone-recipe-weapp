@@ -13,12 +13,12 @@ interface MyInfoCardProps {}
 export const MyInfoCard: React.FC<MyInfoCardProps> = () => {
   const ISWEAPP = useSelector(s=> s.user.ISWEAPP)
   const currentBgCode = useSelector(s=> s.user.currentBgCode)
-  const currentBgImgSrc = require(`../../assets/images/mySettings/setting_page_${currentBgCode}_bg.png`) //背景图地址
+  const currentBgimageSrc = require(`../../assets/images/mySettings/setting_page_${currentBgCode}_bg.png`) //背景图地址
   useEffect(()=>{
   },[])
 
   return(
-    <View style={{backgroundImage: `url(${currentBgImgSrc})`}} className="my-info-card-component">
+    <View style={{backgroundImage: `url(${currentBgimageSrc})`}} className="my-info-card-component">
       <View className="info-card-box">
         {ISWEAPP ? 
           <>

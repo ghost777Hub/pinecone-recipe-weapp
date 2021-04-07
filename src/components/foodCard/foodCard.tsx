@@ -36,7 +36,7 @@ export const FoodCard: React.FC<FoodCardProps> = (props) => {
       {dataPack ? <>
         {/* 菜品图 */}
         <View className="food-card-imgbox">
-          <Image className="food-card-imgg" src={require(`../../assets/images${dataPack.imgSrc}`)} mode="aspectFill"></Image>
+          <Image className="food-card-imgg" src={require(`../../assets/images${dataPack.imageSrc}`)} mode="aspectFill"></Image>
         </View>
         {/* 标题文案与按钮 */}
         <View className="food-card-mainbox">

@@ -16,7 +16,7 @@ export const RecommendsCard: React.FC<RecommendsCardProps> = (props) => {
   const {cardItemData} = props
   useEffect(()=>{
     //注意不能写images/不能加/，不知怎么会有路径解析错误
-    // console.log(require(`../../assets/images${cardItemData.imgSrc}`))
+    // console.log(require(`../../assets/images${cardItemData.imageSrc}`))
     // console.log(require(`../../assets/images/home/015c5d5d831815a8012060be859c4b.png`))
   },[])
 
@@ -25,7 +25,7 @@ export const RecommendsCard: React.FC<RecommendsCardProps> = (props) => {
     <View className="recommends-card-component">
       {cardItemData ? <>
         <View className="recommends-card-area1">
-        <Image className="recard-area1-img" mode="aspectFill" src={ require(`../../assets/images${cardItemData.imgSrc}`) }></Image>
+        <Image className="recard-area1-img" mode="aspectFill" src={ require(`../../assets/images${cardItemData.imageSrc}`) }></Image>
         <View className="recard-area1-textwrapper">
           <Text className="recard-area1-text">{cardItemData.title}</Text>
         </View>

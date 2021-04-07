@@ -4,7 +4,8 @@
 
 .ingredient-list-component {
   .ingredient-list-h3{
-    font-size: 24px;
+    font-size: 40px;
+    margin-bottom: 20px;
     font-weight: bolder;
     color: $deepen_text_title2;
   }
@@ -15,10 +16,10 @@
   }
   .at-list__item{
     padding: 20px 8px;
-    font-size: 16px;
+    font-size: 26px;
     color: $deepen_text_title;
   }
   .at-list__item .item-extra__info {
-    font-size: 13px;
+    font-size: 24px;
   }
 }

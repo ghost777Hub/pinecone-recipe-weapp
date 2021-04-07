@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import './searchBar.scss'
-import {View, Text, Input} from '@tarojs/components'
+import {View, Input, Button} from '@tarojs/components'
 import IconFont from '../iconfont'
 import Taro, { useDidShow } from '@tarojs/taro'
 
@@ -71,7 +71,8 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
         </View>
         <View className="delete-img-you" onClick={handleDelete}><IconFont name="delete" color={leftAndRightIconColor} size={22} /></View>
       </View>
-      <Text className="search-bar-cancel" onClick={handleConfirm}>搜索</Text>
+      <Button style={{margin: 0}} className="search-bar-cancel" onClick={handleConfirm}>搜索</Button>
+      {/* <Text className="search-bar-cancel" onClick={handleConfirm}>搜索</Text> */}
     </View>
   )
 }

@@ -15,7 +15,7 @@ interface VerticalMenuBarProps {
 //组件
 export const VerticalMenuBar: React.FC<VerticalMenuBarProps> = (props) => {
   const { onToListPageFn } = props
-  const [current, setCurrent] = useState<number>(0)  //tab选中下标
+  const [current, setCurrent] = useState<number>(1)  //tab选中下标
 
   //切换右侧tab
   const handleClick = (index)=>{
@@ -43,7 +43,7 @@ export const VerticalMenuBar: React.FC<VerticalMenuBarProps> = (props) => {
                 {item.subcategory.map((subItem, subI)=>{
                   return(
                     <View data-subclasscode={subItem.subClassCode} className="attabspane-boxarea" key={subI} onClick={gotoListPage}>
-                      <View className="attabspane-imagebox"><Image className="attabspane-image" src={subItem.imgSrc} mode="aspectFill"></Image></View>
+                      <View className="attabspane-imagebox"><Image className="attabspane-image" src={subItem.imageSrc} mode="aspectFill"></Image></View>
                       <Text className="attabspane-caitext">{subItem.title}</Text>
                     </View>
                 )})}

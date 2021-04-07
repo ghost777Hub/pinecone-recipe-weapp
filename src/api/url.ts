@@ -8,6 +8,10 @@ interface ALLURLPATHType {
   RANDOMWORD: string;
   /**get /random/recipes 随机页生成食谱*/
   RANDOMRECIPES: string;
+  /**post /recipes/list 参数type:class|search, value: '', currentPage:1 食谱列表*/
+  RECIPESLIST: string;
+  /**post /recipes/detail 参数id: '' 食谱详情*/
+  RECIPESDETAIL: string;
 }
 
 
@@ -18,4 +22,6 @@ export const ALLURLPATH: ALLURLPATHType  = {
   HOMERECOMMEND: ROOTPATH + '/home/recommend',
   RANDOMWORD: ROOTPATH + '/random/keyword',
   RANDOMRECIPES: ROOTPATH + '/random/recipes',
+  RECIPESLIST: ROOTPATH + '/recipes/list',
+  RECIPESDETAIL: ROOTPATH + '/recipes/detail',
 }

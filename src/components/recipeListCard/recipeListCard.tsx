@@ -1,43 +1,48 @@
 import React from 'react'
 import './recipeListCard.scss'
 import {View, Text, Image} from '@tarojs/components'
-import sucaiImgSrc from '../../assets/images/home/017b2c5d831881a8012060be0d83e7.png'
 import { AtRate } from 'taro-ui'
 import Iconfont from '../iconfont'
 
 
 
 //定义
-interface RecipeListCardProps {}
+interface RecipeListCardProps {
+  dataPack:any
+}
 
 //组件
-export const RecipeListCard: React.FC<RecipeListCardProps> = () => {
+export const RecipeListCard: React.FC<RecipeListCardProps> = (props) => {
+  const {dataPack} = props
   const iconfontSize = 24
   const iconfontColor = '#C0C2C8'
-  const sample = [1, 2,3,1, 2,3,1, 2,3,1, 2,3,1, 2,3]
 
   return(
     <View className="recipe-list-card-component">
-      {sample.map((item, i)=>{
+      {dataPack ? dataPack.map((item, i)=>{
         return (
           <View className="recipelist-card-item" key={i}>
             {/* 左边 */}
-            <View className="carditem-viewbox-left"><Image className="carditem-viewimg" src={sucaiImgSrc} mode="aspectFill"></Image></View>
+            <View className="carditem-viewbox-left"><Image className="carditem-viewimg" src={require(`../../assets/images${item.imageSrc}`)} mode="aspectFill"></Image></View>
             {/* 右边 */}
             <View className="carditem-viewbox-right">
               {/* 文本 */}
-              <Text className="right-text">南瓜粥</Text>
-              <Text className="right-text2">主料：超级无敌超级无敌超级无敌超级无敌超级无敌超级无敌超级无敌</Text>
+              <Text className="right-text">{item.title}</Text>
+              <Text className="right-text2">
+                {item.content.map(item=>{
+                  return item.title
+                }).join('、')}
+              </Text>
               {/* 评分 */}
-              <AtRate value={3.5} max={5} size={16}/>
+              <AtRate value={item.score} max={5} size={16}/>
               {/* 图标 */}
               <View className="icon-des-content">
-                <Iconfont name="chakandianzan" color={iconfontColor} size={iconfontSize}/><View className="xiao-span">989</View>
-                <Iconfont name="shoucang" color={iconfontColor} size={iconfontSize}/><View className="xiao-span">36</View>
+                <Iconfont name="chakandianzan" color={iconfontColor} size={iconfontSize}/><View className="xiao-span">{item.LikesNumber}</View>
+                <Iconfont name="shoucang" color={iconfontColor} size={iconfontSize}/><View className="xiao-span">{item.collectorsNumber}</View>
               </View>
             </View> 
           </View>
-      )})}
+      )}):null}
     </View>
   )
 }

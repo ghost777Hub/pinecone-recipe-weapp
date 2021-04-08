@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "pinecone-recipe-weapp",
   "description": "a wechat app about recipes",
-  "appid": "wx3f2236c3e66a6396",
+  "appid": "wx4113d1779fcb6bd7",
   "setting": {
     "urlCheck": true,
     "es6": false,

@@ -1,0 +1,42 @@
+@import '../../assets/styles/var.scss';
+
+
+.my-info-card-component {
+  width: 100%;
+  height: 700px;
+  background: transparent no-repeat;
+  background-size: 100% 80%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+
+  .info-card-box{
+    width: 68%;
+    height: 220px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 7px $default_border_bg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .info-card-useravatar{
+      width: 128px;
+      height: 128px;
+      // background: $default_text_cr;
+      border-radius: 50%;
+      margin-top: -30px;
+    }
+    .info-card-text1{
+      color: #000;
+      font-weight: 700;
+      font-size: 26px;
+      margin-top: 20px;
+      margin-bottom: 12px;
+    }
+    .info-card-text2{
+      color: $deepen_text_title;
+      font-size: 16px;
+    }
+  }
+}

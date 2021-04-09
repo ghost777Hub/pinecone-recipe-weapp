@@ -1,0 +1,61 @@
+@import '../../assets/styles/var.scss';
+
+
+
+.recipe-detail-page {
+  padding-bottom:70px;
+  .recipe-detail-header{
+    .recipe-detail--header-img{
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .recipe-detail--header-title{
+      font-size: 50px;
+      font-weight: bolder;
+      color: $deepen_text_title2;
+    }
+    .caiming-renshu-text{
+      font-size: 22px;
+      color: $deepen_text_cr;
+      margin-right: 20px;
+    }
+  }
+
+
+  .describe-row-img{
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+  }
+  .describe-row-text{
+    margin-top: 6px;
+    color: $deepen_text_title2;
+    font-size: 18px;
+  }
+
+  .production-steps-item{
+    margin-bottom: 60px;
+  }
+
+
+  /*覆盖taro-ui样式*/
+  .at-divider {
+    height: 30px;
+  }
+  .at-article__h2, .at-article__p{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .at-article__h2{
+    font-size: 45px;
+    font-weight: bolder;
+    color: $deepen_text_title2;
+  }
+  .at-article__p{
+    font-size: 28px;
+    margin-top: 15px;
+    color: $deepen_shadow_bg;
+  }
+}

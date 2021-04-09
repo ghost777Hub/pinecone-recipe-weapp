@@ -1,0 +1,10 @@
+@import '../../assets/styles/var.scss';
+
+
+
+.classification-menu-page {
+  .verticalmenubar-wrapper{
+    height: calc(100vh - 105px);
+    border-top: 1px solid $default_dividing_line;
+  }
+}

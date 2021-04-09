@@ -1,0 +1,47 @@
+@import "../../assets/styles/var.scss";
+
+
+
+.search-bar-component {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .search-bar-box{
+    width: 80%;
+    height: 65px;
+    // background: $lightening_main_bg;
+    border: 1px solid $default_border_bg;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    transition: border-color .6s ease-in-out;
+    .search-bar-input-wrapper{
+      display: flex;
+      align-items: center;
+      flex: 1;
+      height: 50px;
+      min-height: 50px;
+      font-size: 22px;
+    }
+    .search-bar-input{
+      width: 100%;
+    }
+    .search-bar-inputph{
+      color:$deepen_text_cr;
+    }
+    .search-img-zuo,.delete-img-you{
+      width: 65px;
+      height: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+  .search-bar-cancel{
+    margin-right: 8px;
+    font-size: 22px;
+    color: $deepen_border_bule;
+  }
+}

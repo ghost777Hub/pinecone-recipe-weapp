@@ -1,0 +1,70 @@
+@import '../../assets/styles/var.scss';
+
+
+
+.settings-list-component {
+  margin-top: 45px;
+  .settings-list-item{
+    height: 80px;
+    background: $lightening_main_bg;
+    margin-bottom: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding:0 28px 0 22px;
+    border-top: 1px solid $default_dividing_line;
+    border-bottom: 1px solid $default_dividing_line;
+    .settings-item-front{
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .settings-item-fronttext, .item-content__info-title{
+      margin-left: 15px;
+      font-size: 30px;
+      color: $default_text_title;
+    }
+  }
+  .settings-list-item2{
+    position: relative;
+    //分享按钮
+    .fenxiang-btn{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $lightening_main_bg;
+      border: none;
+      opacity: .1;
+    }
+  }
+
+
+  /*覆盖默认taro-ui样式*/
+  .at-modal__content {
+    height: 100px;
+    line-height: 100px;
+    min-height: min-content;
+    text-align: center;
+  }
+  .at-list, .at-list__item{
+    width: 100%;
+  }
+  .at-list__item{
+    padding: 0;
+  }
+  .at-list {
+    background-color: transparent;
+  }
+  .at-list__item::after, .at-list::after {
+    border: none;
+  }
+  .item-extra__info{
+    padding-right: 2px;
+    color:$deepen_text_cr;
+    font-size: 22px;
+  }
+}

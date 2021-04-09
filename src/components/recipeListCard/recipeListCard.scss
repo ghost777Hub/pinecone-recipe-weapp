@@ -1,0 +1,63 @@
+@import '../../assets/styles/var.scss';
+
+
+
+.recipe-list-card-component {
+  width: 92%;
+  border-radius: 14px;
+  box-shadow: 0 0 14px $default_text_cr;
+  box-sizing: border-box;
+  padding: 24px 20px;
+  margin: 40px 0 60px;
+  .recipelist-card-item{
+    width: 100%;
+    height: 200px;
+    // background: brown;
+    display: flex;
+    align-items: center;
+
+
+    .carditem-viewbox-left,.carditem-viewimg{
+      width: 250px;
+      height: 180px;
+      border-radius: 10px;
+      // background: chartreuse;
+    }
+
+
+    .carditem-viewbox-right{
+      flex: 1;
+      min-height: 82%;
+      // background: red;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding-left: 30px;
+      overflow: hidden;
+      .right-text, .right-text2{
+        width: 100%;
+        font-size: 24px;
+        color: $deepen_text_title;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .right-text2{
+        font-size: 18px;
+      }
+      .icon-des-content{
+        // background: burlywood;
+        display: flex;
+        align-items: center;
+        color: $deepen_text_cr;
+        font-size: 18px;
+        .xiao-span{
+          min-width: 70px;
+          box-sizing: border-box;
+          padding-left: 6px;
+        }
+      }
+    }
+  }
+}

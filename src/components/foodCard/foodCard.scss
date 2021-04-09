@@ -1,0 +1,88 @@
+@import '../../assets/styles/var.scss';
+
+
+.food-card-component {
+  margin: 0 auto;
+  width: 80%;
+  height: 860px;
+  border-radius: 14px;
+  // box-shadow:  0 0 14px $default_shadow_bg;
+  box-shadow: rgba(255, 230, 201, 0.4) 5px 5px, 
+  rgba(255, 230, 201, 0.3) 10px 10px, 
+  rgba(255, 230, 201, 0.2) 25px 25px, 
+  rgba(255, 230, 201, 0.05) 45px 45px,
+  rgba(255, 230, 201, 0.4) -5px 5px, 
+  rgba(255, 230, 201, 0.3) -10px 10px, 
+  rgba(255, 230, 201, 0.2) -25px 25px, 
+  rgba(255, 230, 201, 0.05) -45px 45px,
+  rgba(255, 230, 201, 0.4) 5px -5px, 
+  rgba(255, 230, 201, 0.3) 10px -10px, 
+  rgba(255, 230, 201, 0.2) 25px -25px, 
+  rgba(255, 230, 201, 0.05) 45px -45px;
+
+  display: flex;
+  flex-direction: column;
+  .food-card-imgbox, .food-card-imgg{
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    width: 100%;
+    height: 450px;
+  }
+  .food-card-bottom-wrapper{
+    width: 100%;
+  }
+
+  /*中间区域*/
+  .food-card-mainbox{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    .food-card-main-text{
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-align: center;
+      box-sizing: border-box;
+      &.text1{
+        margin: 18px 0;
+        font-size: 50px;
+        color: $deepen_text_title;
+      }
+      &.text2{
+        margin-bottom: 12px;
+        font-size: 26px;
+        color: $deepen_text_title;
+      }
+      &.text3{
+        font-size: 22px;
+        color: $deepen_text_cr;
+      }
+    }
+    .mainbox-threebtnbox{
+      width: 100%;
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      .food-card-main-btn{
+        width: 115px;
+        height: 115px;
+        word-break: break-all;
+        background: $default_main_bg;
+        box-shadow: 0 0 8px $deepen2_main_bg;
+        border-radius: 50%;
+        overflow: hidden;
+        color:$lightening_main_bg;
+        font-size:23px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}

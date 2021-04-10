@@ -17,7 +17,7 @@ export const HotTagsArea: React.FC<HotTagsAreaProps> = (props) => {
   const {dataPack} = props
   //点击标签
   const clickTag = (e)=>{
-    console.log(e.name);
+    // console.log(e.name);
     props.onWordToDetail && props.onWordToDetail(e.name)
   }
 

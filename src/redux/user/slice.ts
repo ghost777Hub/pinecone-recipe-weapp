@@ -54,14 +54,14 @@ const initialState: userState = {
 
 /*异步API请求*/
 //某某API
-export const getTemplateAPI = createAsyncThunk(
-  'user/getTemplateAPI',
-  async (parameters:{},) => {
-    //第二参数thunkAPI: thunkAPI.dispatch()
-    const res = await fetch('',parameters)
-    return res
-  }
-)
+// export const getTemplateAPI = createAsyncThunk(
+//   'user/getTemplateAPI',
+//   async (parameters:{},) => {
+//     //第二参数thunkAPI: thunkAPI.dispatch()
+//     const res = await fetch('',parameters)
+//     return res
+//   }
+// )
 
 
 //创建slice
@@ -82,14 +82,14 @@ export const userSlice = createSlice({
     }
   },
   extraReducers:{
-    [getTemplateAPI.pending.type]: (state,  action)=>{
-      console.log('getTemplateAPI:', state, action)
-    },
-    [getTemplateAPI.fulfilled.type]: (state,  action)=>{
-      console.log('getTemplateAPI:', state, action)
-    },
-    [getTemplateAPI.rejected.type]: (state,  action)=>{
-      console.log('getTemplateAPI:', state, action)
-    },
+    // [getTemplateAPI.pending.type]: (state,  action)=>{
+    //   // console.log('getTemplateAPI:', state, action)
+    // },
+    // [getTemplateAPI.fulfilled.type]: (state,  action)=>{
+    //   // console.log('getTemplateAPI:', state, action)
+    // },
+    // [getTemplateAPI.rejected.type]: (state,  action)=>{
+    //   // console.log('getTemplateAPI:', state, action)
+    // },
   }
 })

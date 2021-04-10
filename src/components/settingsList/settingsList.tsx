@@ -39,6 +39,8 @@ export const SettingsList: React.FC<SettingsListProps> = () => {
       bgAudio.onPlay(openBackgroundAMG)
       bgAudio.onPause(pauseBackgroundAMG)
       bgAudio.onEnded(offBackgroundAMG)
+      bgAudio.onStop(offBackgroundAMG)
+      bgAudio.onError(offBackgroundAMG)
     }
     // console.log(allBgTitleArr);
   }, [])

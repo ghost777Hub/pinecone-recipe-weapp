@@ -28,7 +28,7 @@ export const RightProgress: React.FC<RightProgressProps> = (props) => {
   })
 
   useEffect(()=>{
-    console.log(kaluli,danbaizhi)
+    // console.log(kaluli,danbaizhi)
   },[kaluli,danbaizhi])
 
 

@@ -18,8 +18,10 @@ interface recipesState {
   recipesListData: any[];
   /**数据请求完成前loading */
   loading: boolean;  //有DOM渲染，回到顶部问题。列表页不用了，用原生showloading
+  deLoading: boolean;
   /**数据错误 */
   error: string | null;
+  deError: string | null;
   /**当前数据列表数据码 */
   currentPage: number;
   /**食谱详情数据 */
@@ -34,6 +36,8 @@ const initialState: recipesState = {
   randomRecipesData: {},
   recipesListData: [],
   loading: true,
+  deLoading : true,
+  deError: null,
   error: null,
   currentPage: 0,
   recipesDetailData: {}
@@ -123,105 +127,108 @@ export const recipesSlice = createSlice({
   reducers: {},
   extraReducers:{
     //获取首页轮播图API
-    [getHomeBannerAPI.pending.type]: (state,  action)=>{
-      console.log('getHomeBannerAPI等待:', state, action)
+    [getHomeBannerAPI.pending.type]: ()=>{
+      // console.log('getHomeBannerAPI等待:', state, action)
     },
     [getHomeBannerAPI.fulfilled.type]: (state,  action)=>{
       const _data = action.payload.data
       state.bannerListData = _data
-      console.log('getHomeBannerAPI成功:', state, action)
+      // console.log('getHomeBannerAPI成功:', state, action)
     },
-    [getHomeBannerAPI.rejected.type]: (state,  action)=>{
-      console.log('getHomeBannerAPI失败:', state, action)
+    [getHomeBannerAPI.rejected.type]: ()=>{
+      // console.log('getHomeBannerAPI失败:', state, action)
     },
 
     //获取首页推荐卡API
-    [getHomeRecommendAPI.pending.type]: (state,  action)=>{
-      console.log('getHomeRecommendAPI等待:', state, action)
+    [getHomeRecommendAPI.pending.type]: ()=>{
+      // console.log('getHomeRecommendAPI等待:', state, action)
     },
     [getHomeRecommendAPI.fulfilled.type]: (state,  action)=>{
       const _data = action.payload.data
       state.recommendData = _data
-      console.log('getHomeRecommendAPI成功:', state, action)
+      // console.log('getHomeRecommendAPI成功:', state, action)
     },
-    [getHomeRecommendAPI.rejected.type]: (state,  action)=>{
-      console.log('getHomeRecommendAPI失败:', state, action)
+    [getHomeRecommendAPI.rejected.type]: ()=>{
+      // console.log('getHomeRecommendAPI失败:', state, action)
     },
 
     //获取随机页关键词API
-    [getRandomWordAPI.pending.type]: (state,  action)=>{
-      console.log('getRandomWordAPI等待:', state, action)
+    [getRandomWordAPI.pending.type]: ()=>{
+      // console.log('getRandomWordAPI等待:', state, action)
     },
     [getRandomWordAPI.fulfilled.type]: (state,  action)=>{
       const _data = action.payload.data
       state.keyWordData = _data
-      console.log('getRandomWordAPI成功:', state, action)
+      // console.log('getRandomWordAPI成功:', state, action)
     },
-    [getRandomWordAPI.rejected.type]: (state,  action)=>{
-      console.log('getRandomWordAPI失败:', state, action)
+    [getRandomWordAPI.rejected.type]: ()=>{
+      // console.log('getRandomWordAPI失败:', state, action)
     },
 
     //获取随机页生成食谱API
-    [getRandomRecipesAPI.pending.type]: (state,  action)=>{
-      console.log('getRandomRecipesAPI等待:', state, action)
+    [getRandomRecipesAPI.pending.type]: ()=>{
+      // console.log('getRandomRecipesAPI等待:', state, action)
     },
     [getRandomRecipesAPI.fulfilled.type]: (state,  action)=>{
       const _data = action.payload.data
       state.randomRecipesData = _data
-      console.log('getRandomRecipesAPI成功:', state, action)
+      // console.log('getRandomRecipesAPI成功:', state, action)
     },
-    [getRandomRecipesAPI.rejected.type]: (state,  action)=>{
-      console.log('getRandomRecipesAPI失败:', state, action)
+    [getRandomRecipesAPI.rejected.type]: ()=>{
+      // console.log('getRandomRecipesAPI失败:', state, action)
     },
 
     //获取食谱列表API
-    [postRecipesListAPI.pending.type]: (state,  action)=>{
-      console.log('postRecipesListAPI等待:', state, action)
+    [postRecipesListAPI.pending.type]: (state)=>{
+      state.loading = true
+      // console.log('postRecipesListAPI等待:', state, action)
     },
     [postRecipesListAPI.fulfilled.type]: (state,  action)=>{
       const _data = action.payload.data
       state.currentPage = _data.currentPageCode
       state.recipesListData = _data.pageData
+      state.loading = false
       state.error = null
-      console.log('postRecipesListAPI成功:', state, action)
+      // console.log('postRecipesListAPI成功:', state, action)
     },
     [postRecipesListAPI.rejected.type]: (state,  action)=>{
+      state.loading = false
       state.error = action.payload
-      console.log('postRecipesListAPI失败:', state, action)
+      // console.log('postRecipesListAPI失败:', state, action)
     },
 
     //下拉刷新食谱列表API
-    [postRecipesListPullDownAPI.pending.type]: (state,  action)=>{
-      console.log('postRecipesListPullDownAPI等待:', state, action)
+    [postRecipesListPullDownAPI.pending.type]: ()=>{
+      // console.log('postRecipesListPullDownAPI等待:', state, action)
     },
     [postRecipesListPullDownAPI.fulfilled.type]: (state,  action)=>{
       const _data = action.payload.data
       state.currentPage = _data.currentPageCode
       state.recipesListData = state.recipesListData.concat(_data.pageData)
       state.error = null
-      console.log('postRecipesListPullDownAPI成功:', state, action)
+      // console.log('postRecipesListPullDownAPI成功:', state, action)
     },
     [postRecipesListPullDownAPI.rejected.type]: (state,  action)=>{
       state.error = action.payload
-      console.log('postRecipesListPullDownAPI失败:', state, action)
+      // console.log('postRecipesListPullDownAPI失败:', state, action)
     },
 
     //获取食谱详情
-    [postRecipesDetailAPI.pending.type]: (state,  action)=>{
-      state.loading = true
-      console.log('postRecipesDetailAPI等待:', state, action)
+    [postRecipesDetailAPI.pending.type]: (state)=>{
+      state.deLoading = true
+      // console.log('postRecipesDetailAPI等待:', state, action)
     },
     [postRecipesDetailAPI.fulfilled.type]: (state,  action)=>{
       const _data = action.payload.data
       state.recipesDetailData = _data
-      state.loading = false
-      state.error = null
-      console.log('postRecipesDetailAPI成功:', state, action)
+      state.deLoading = false
+      state.deError = null
+      // console.log('postRecipesDetailAPI成功:', state, action)
     },
     [postRecipesDetailAPI.rejected.type]: (state,  action)=>{
-      state.loading = false
-      state.error = action.payload
-      console.log('postRecipesDetailAPI失败:', state, action)
+      state.deLoading = false
+      state.deError = action.payload
+      // console.log('postRecipesDetailAPI失败:', state, action)
     },
   }
 })

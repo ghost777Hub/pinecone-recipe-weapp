@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { postRecipesListAPI, postRecipesListPullDownAPI } from '../../redux/recipes/slice'
 import { useSelector } from '../../redux/hooks'
 import { debounce } from '../../utils/common'
+import { AtActivityIndicator } from 'taro-ui'
 
 
 
@@ -20,6 +21,7 @@ const RecipeList: React.FC<RecipeListProps> = () => {
   const recipesListData = useSelector(s=>s.recipe.recipesListData)
   const currentPage = useSelector(s=>s.recipe.currentPage)
   const error = useSelector(s=>s.recipe.error)
+  const loading = useSelector(s=>s.recipe.loading)
   const dispatch = useDispatch()
   useEffect(()=>{
     searchAndClass(type, value, 0)
@@ -50,6 +52,10 @@ const RecipeList: React.FC<RecipeListProps> = () => {
     })
   }
 
+
+  if(loading){
+    return <AtActivityIndicator mode='center' content='Loading...' size={50} ></AtActivityIndicator>
+  }
 
   if (error) {
     return <div>网站出错: {error}</div>

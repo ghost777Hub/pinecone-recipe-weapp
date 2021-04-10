@@ -25,8 +25,8 @@ const RecipeDetail: React.FC<RecipeDetailProps> = () => {
   const { id } = router.params
   const { composition, content, shuming, stepData } = useSelector(s => s.recipe.recipesDetailData) as any
   const recipesDetailData = useSelector(s => s.recipe.recipesDetailData) as any
-  const error = useSelector(s=>s.recipe.error)
-  const loading = useSelector(s=>s.recipe.loading)
+  const error = useSelector(s=>s.recipe.deError)
+  const loading = useSelector(s=>s.recipe.deLoading)
 
   const shumingImgSrc = [  //说明数据图
     {
